@@ -1,0 +1,22 @@
+<div class="card mb-5">
+  <div class="card-body">
+    <h5 class="card-title">Create a project</h5>
+    <p class="card-text">A project is a container inside your organization that allows you to segment out both structure and content itself. A project provides read-level API keys to allow your appliations to retrieve your content.</p>
+
+    <form {{action "create" on="submit"}}>
+      <div class="form-row">
+        <div class="col">
+          <div class="form-group">
+            <label for="name">Project Name</label>
+            {{input type="text" value=model.name class="form-control" id="name" placeholder="Name" autofocus=true}}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+          <button type="submit" class="btn btn-primary btn-block">Create</button>
+      </div>
+    </form>
+
+ </div>
+</div>

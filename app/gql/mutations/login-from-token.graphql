@@ -1,0 +1,10 @@
+mutation loginFromToken($input: AuthTokenInput!) {
+	loginFromToken(input: $input) {
+		session {
+      id
+      uid
+      exp
+      token
+		}
+	}
+}

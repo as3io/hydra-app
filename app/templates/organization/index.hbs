@@ -1,0 +1,63 @@
+<div class="card mb-5">
+  <div class="card-body">
+    <div class="row justify-content-center">
+      <div class="col">
+        <h2>
+          <img src="{{model.photoURL}}" class="icon icon-lg mr-4" alt={{model.name}}>
+          {{#if model}}
+            {{model.name}}
+          {{else}}
+            New Organization
+          {{/if}}
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="card mb-5">
+  <div class="card-body">
+    <h5 class="card-title">Organization checklist</h5>
+    <p class="card-text">Make the most of your organization. Follow the steps below to get started in no time!</p>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Create a project</h5>
+          {{#if model.projects}}
+          <small class="text-success">Complete!</small>
+          {{else}}
+          <small>Incomplete</small>
+          {{/if}}
+        </div>
+        <p>
+          {{#if model}}
+            {{#link-to 'organization.projects.create' model.id class='float-right btn btn-primary btn-sm'}}Do it!{{/link-to}}
+          {{else}}
+            <button class="float-right btn btn-primary btn-disabled disabled btn-sm" title="Create an organization first!">Do it!</button>
+          {{/if}}
+          A project is a container inside your organization that allows you to segment out both structure and content itself. A project provides read-level API keys to allow your appliations to retrieve your content.
+        </p>
+      </li>
+      <li class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Stop. Collaborate and listen.</h5>
+          {{#if model.members}}
+          <small class="text-success">Complete!</small>
+          {{else}}
+          <small>Incomplete</small>
+          {{/if}}
+        </div>
+        <p>
+          {{#if model.members}}
+            {{#link-to 'organization.team' model.id class='float-right btn btn-primary btn-sm'}}Do it!{{/link-to}}
+          {{else}}
+            <button class="float-right btn btn-primary btn-disabled disabled btn-sm" title="Create an organization first!">Do it!</button>
+          {{/if}}
+          Collaboration with your team is key. Invite users to join your organization from your settings page.
+        </p>
+      </li>
+    </ul>
+  </div>
+</div>

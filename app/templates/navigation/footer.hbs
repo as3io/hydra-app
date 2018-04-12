@@ -1,0 +1,11 @@
+<div class="fixed-bottom">
+{{#each flashMessages.queue as |flash|}}
+  {{flash-message flash=flash}}
+{{/each}}
+</div>
+{{!--
+<nav class="navbar navbar-expand fixed-bottom navbar-dark bg-dark app-navbar z-depth-1-half-inverse">
+  <div class="mx-auto">
+    {{outlet "actions"}}
+  </div>
+</nav> --}}

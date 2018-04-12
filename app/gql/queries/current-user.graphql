@@ -1,0 +1,20 @@
+query currentUser {
+  currentUser {
+    id
+    email
+    familyName
+    givenName
+    photoURL
+    hasPassword
+    organizations {
+      id
+      name
+      photoURL
+      projects {
+        id
+        name
+      }
+      accepted
+    }
+  }
+}

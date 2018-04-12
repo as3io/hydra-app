@@ -1,0 +1,21 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="offset-md-3 col-md-6">
+      <div class="jumbotron">
+        <small class="float-right text-muted">{{#link-to "login"}}Sign In{{/link-to}}</small>
+        <h3>Reset Password</h3>
+        <hr class="m-y-1">
+        <form {{action "reset" on="submit"}}>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            {{input id="email" class="form-control" type="email" value=email autofocus=true}}
+          </div>
+          {{#if errorMessage}}
+            <div class="alert-danger alert m-b-1" role="alert"><strong>Oh Snap!</strong> {{errorMessage}}</div>
+          {{/if}}
+          <button type="submit" class="btn btn-primary btn-block">Reset</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

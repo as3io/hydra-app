@@ -1,0 +1,105 @@
+{
+  "name": "hydra-app",
+  "version": "0.0.0",
+  "private": true,
+  "description": "HYDRA content engine Ember frontend app",
+  "license": "MIT",
+  "author": "",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "repository": "https://github.com/cygnusb2b/hydra-app",
+  "scripts": {
+    "pretest": "yarn run posttest && $npm_package_docker_test_install",
+    "posttest": "$npm_package_docker_test_down && $npm_package_docker_test_prune",
+    "test": "$npm_package_docker_test_test",
+    "terminal": "docker exec -it hydraapp_app_1 /bin/bash",
+    "prestart": "$npm_package_docker_dev_install",
+    "start": "$npm_package_docker_dev_up",
+    "stop": "$npm_package_docker_dev_down",
+    "prelint": "$npm_package_docker_test_install",
+    "lint": "$npm_package_docker_test_lint",
+    "postlint": "$npm_package_docker_test_down",
+    "precoverage": "yarn run postcoverage && $npm_package_docker_test_install",
+    "coverage": "$npm_package_docker_test_coverage",
+    "postcoverage": "$npm_package_docker_test_down && $npm_package_docker_test_prune",
+    "test:ci": "yarn run lint:run && ./node_modules/.bin/ember test --reporter xunit --silent",
+    "test:run": "yarn run lint:run && ./node_modules/.bin/ember test",
+    "lint:run": "./node_modules/.bin/eslint ./*.js app config lib server tests",
+    "coverage:run": "./node_modules/.bin/nyc yarn run test:ci"
+  },
+  "docker": {
+    "dev": {
+      "install": "docker-compose -p hydraapp run --no-deps --entrypoint yarn app install",
+      "up": "docker-compose -p hydraapp up",
+      "down": "docker-compose -p hydraapp down"
+    },
+    "test": {
+      "install": "docker-compose -p hydraapptest -f tests/docker-compose.yml run --no-deps --entrypoint yarn test",
+      "test": "docker-compose -p hydraapptest -f tests/docker-compose.yml run test",
+      "coverage": "docker-compose -p hydraapptest -f tests/docker-compose.yml run --entrypoint yarn test run coverage:run",
+      "lint": "docker-compose -p hydraapptest -f tests/docker-compose.yml run --entrypoint yarn test run lint:run",
+      "down": "docker-compose -p hydraapptest -f tests/docker-compose.yml down",
+      "prune": "docker volume prune --filter label=io.as3.appname=hydra-app --filter label=io.as3.env=test --filter label=io.as3.discard=true --force"
+    }
+  },
+  "devDependencies": {
+    "bootswatch": "^4.0.0",
+    "broccoli-asset-rev": "^2.4.5",
+    "ember-ajax": "^3.0.0",
+    "ember-apollo-client": "^1.0.0",
+    "ember-cli": "~3.0.0",
+    "ember-cli-app-version": "^3.0.0",
+    "ember-cli-babel": "^6.6.0",
+    "ember-cli-dependency-checker": "^2.0.0",
+    "ember-cli-eslint": "^4.2.1",
+    "ember-cli-flash": "^1.6.3",
+    "ember-cli-htmlbars": "^2.0.1",
+    "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+    "ember-cli-inject-live-reload": "^1.4.1",
+    "ember-cli-moment-shim": "^3.6.0",
+    "ember-cli-qunit": "^4.1.1",
+    "ember-cli-sass": "^7.1.7",
+    "ember-cli-shims": "^1.2.0",
+    "ember-cli-sri": "^2.1.0",
+    "ember-cli-uglify": "^2.0.0",
+    "ember-data": "~3.0.0",
+    "ember-entypo": "https://github.com/limit-zero/ember-entypo#master",
+    "ember-export-application-global": "^2.0.0",
+    "ember-fetch": "^3.4.4",
+    "ember-load-initializers": "^1.0.0",
+    "ember-maybe-import-regenerator": "^0.1.6",
+    "ember-moment": "^7.6.0",
+    "ember-power-select": "^2.0.0-beta.3",
+    "ember-resolver": "^4.0.0",
+    "ember-route-action-helper": "^2.0.6",
+    "ember-simple-auth": "^1.6.0",
+    "ember-source": "~3.0.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-ember": "^5.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "ionicons": "^2.0.1",
+    "loader.js": "^4.2.3",
+    "nyc": "^11.6.0",
+    "owasp-password-strength-test": "^1.3.0"
+  },
+  "nyc": {
+    "check-coverage": false,
+    "per-file": true,
+    "reporter": [
+      "text",
+      "cobertura"
+    ],
+    "all": true,
+    "cache": false,
+    "include": [
+      "app/**/*.js",
+      "config/**/*.js",
+      "vendor/**/*.js"
+    ]
+  },
+  "engines": {
+    "node": "^4.5 || 6.* || >= 7.*"
+  }
+}

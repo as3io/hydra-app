@@ -1,0 +1,13 @@
+{{partial "navigation/header"}}
+
+<div class="container my-5">
+  {{outlet}}
+</div>
+
+<div id="loading-trigger" style="display:none; opacity:0.8">
+  {{partial "loading"}}
+</div>
+
+{{!-- {{ember-notify messageStyle='bootstrap'}} --}}
+
+{{partial "navigation/footer"}}

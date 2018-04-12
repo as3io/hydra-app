@@ -1,0 +1,27 @@
+query OrganizationMembers($input: ModelIdInput!) {
+	organization(input: $input) {
+		id
+    members {
+      invited
+      accepted
+      user {
+        id
+        email
+        givenName
+        familyName
+        photoURL
+      }
+      role
+      projects {
+        project {
+          name
+        }
+        role
+      }
+    }
+    projects {
+      id
+      name
+    }
+	}
+}

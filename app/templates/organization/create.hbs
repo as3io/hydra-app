@@ -1,0 +1,22 @@
+<div class="card mb-5">
+  <div class="card-body">
+    <h5 class="card-title">Create an organization</h5>
+    <p class="card-text">Organizations allow you to manage team members and projects. Each Organization is independent and will be billed separately.</p>
+
+    <form {{action "create" on="submit"}}>
+      <div class="form-row">
+        <div class="col">
+          <div class="form-group">
+            <label for="name">Organization Name</label>
+            {{input type="text" value=model.name class="form-control" id="name" placeholder="Name" autofocus=true}}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+          <button type="submit" class="btn btn-primary btn-block">Create</button>
+      </div>
+    </form>
+
+ </div>
+</div>

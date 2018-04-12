@@ -1,0 +1,24 @@
+<div class="card mb-5">
+  <div class="card-body">
+    <div class="row justify-content-center">
+      <div class="col">
+        <h2>
+          <img src="{{model.photoURL}}" class="icon icon-lg mr-4" alt={{model.name}}>
+          {{model.name}}
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="card mb-5">
+  <div class="card-body">
+    <h5 class="card-title">Organization Invitation</h5>
+    <p class="card-text">You have been invited to join {{ model.name }}. To accept the invitation, click the button below!</p>
+    {{#-bs/button "primary" click=(route-action "accept")}}
+      Accept invitation
+    {{/-bs/button}}
+  </div>
+</div>

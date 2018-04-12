@@ -1,0 +1,9 @@
+query Organization($input: ModelIdInput!) {
+	organization(input: $input) {
+		id
+		name
+    photoURL
+		updatedAt
+		createdAt
+	}
+}

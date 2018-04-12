@@ -1,0 +1,19 @@
+query AllProjects($criteria: PaginationCriteriaInput, $pagination: PaginationInput, $sort: ProjectSortInput) {
+  allProjects(criteria: $criteria, pagination: $pagination, sort: $sort) {
+    totalCount
+    edges {
+      node {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      hasPrevPage
+      endCursor
+    }
+  }
+}

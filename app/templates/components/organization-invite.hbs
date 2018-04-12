@@ -1,0 +1,52 @@
+<div class="card mb-5">
+  <div class="card-body">
+    <h5 class="card-title">Invite to {{ organization.name }}</h5>
+    <p class="card-text">Invite your team to collaborate within your organization.</p>
+
+    <form {{action "invite" on="submit"}}>
+
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="email">Email Address</label>
+          {{input type="email" value=model.email class="form-control" id="email" required=true placeholder="foo@bar.baz"}}
+        </div>
+        <div class="form-group col-md-1">
+          <label for="givenName">First Name</label>
+          {{input type="text" value=model.givenName class="form-control" id="givenName" required=true placeholder="Jane"}}
+        </div>
+        <div class="form-group col-md-1">
+          <label for="familyName">Last Name</label>
+          {{input type="text" value=model.familyName class="form-control" id="familyName" required=true placeholder="Doe"}}
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="role">Organization Role</label>
+          {{#power-select options=roles selected=model.role onchange=(action (mut model.role)) as |role|}}
+            {{ role }}
+          {{/power-select}}
+        </div>
+      </div>
+
+      <hr>
+
+      <label for="role-project">Project Roles</label>
+      {{#each model.projects as |projectRole|}}
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          {{ projectRole.project.name }}
+        </div>
+        <div class="form-group col-md-6">
+        {{#power-select allowClear=true options=projectRoles selected=projectRole.role onchange=(action (mut projectRole.role)) as |role|}}
+          {{ role }}
+        {{/power-select}}
+        </div>
+        </div>
+      {{/each}}
+
+      <div class="form-row">
+          <button type="submit" class="btn btn-primary btn-block">Invite</button>
+      </div>
+    </form>
+
+ </div>
+</div>

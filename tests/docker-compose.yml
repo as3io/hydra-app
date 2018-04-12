@@ -1,0 +1,30 @@
+version: '3'
+services:
+  test:
+    image: danlynn/ember-cli:3.0.0
+    ports:
+      - "${EMBER_SERVE_PORT-8405}:${EMBER_SERVE_PORT-8405}"
+      - "${EMBER_LIVER_PORT-8406}:${EMBER_LIVER_PORT-8406}"
+      - "${EMBER_TESTS_PORT-8407}:${EMBER_TESTS_PORT-8407}"
+    volumes:
+      - ../:/myapp:cached
+      - node_modules:/myapp/node_modules
+      - tmp:/myapp/tmp
+    entrypoint: yarn run test:run
+volumes:
+  node_modules: {}
+  tmp:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+
+
+volumes:
+  node_modules:
+    labels:
+      io.as3.appname: "hydra-app"
+      io.as3.env: "test"
+  tmp:
+    labels:
+      io.as3.appname: "hydra-app"
+      io.as3.env: "test"

@@ -1,0 +1,157 @@
+@import "node_modules/bootswatch/dist/simplex/variables";
+// $input-bg:          $gray-500;
+// $input-disabled-bg: $gray-600;
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/ionicons/css/ionicons";
+@import "node_modules/bootswatch/dist/simplex/bootswatch";
+@import "_loading.scss";
+@import "_powerselect.scss";
+
+body {
+  background-image: url(/assets/images/logo-bg.png?4223);
+  background-position-y: bottom;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-attachment: fixed;
+  background-size: 15%;
+}
+
+.icon {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1;
+  vertical-align: middle;
+  border-radius: 3px;
+}
+
+.brand-logo {
+  height: 25px;
+}
+
+.icon-100px svg {
+height:100px
+}
+
+.filter-grayscale {
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+
+.icon-lg {
+  width: 100px;
+  height: 100px;
+}
+
+.icon-md {
+  width: 50px;
+  height: 50px;
+}
+
+.icon-sm {
+  width: 20px;
+  height: 20px;
+}
+
+.dropdown-item.flex {
+  display: flex !important;
+}
+
+.tenant-action {
+  display: inline-block;
+  vertical-align: bottom;
+  height: 24px;
+}
+
+.fixed-bottom {
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.fixed-bottom.create {
+  left: inherit;
+}
+
+.ember-basic-dropdown-content {
+  z-index: 10000;
+}
+
+.card .ember-power-calendar {
+  min-height: 300px;
+}
+
+fieldset {
+  border: 1px solid $gray-400;
+  padding: 1em;
+  position: relative;
+}
+
+legend {
+  display: inline-block;
+  width: auto;
+  font-size: inherit;
+}
+
+.tab-content {
+  padding: 1em;
+  border: 1px solid #dee2e6;
+  border-top: none;
+}
+
+.mh-100 {
+  min-height: 100%;
+}
+
+.mxh-30 {
+  max-height: 30px;
+}
+
+.t-0 {
+  top: 0;
+}
+
+.r-0 {
+  right: 0;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.b-0 {
+  bottom: 0
+}
+
+.l-0 {
+  left: 0;
+}
+
+.pe-none {
+  pointer-events: none;
+}
+
+.background-trans-black {
+  background: rgba(0,0,0,0.5);
+}
+
+// .navbar-dark .navbar-nav .nav-link.active {
+//   color: $white;
+//   // font-weight: bold;
+// }
+
+.z-depth-1 {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.z-depth-1-half {
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.z-depth-1-half-inverse {
+  box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.16), 0 -2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.highcharts-credits {
+  display: none !important;
+}
+

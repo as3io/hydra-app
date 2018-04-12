@@ -1,0 +1,52 @@
+<div class="card mb-5">
+  <div class="card-body">
+    <h5 class="card-title">Team Members</h5>
+    <p class="card-text">Manage your organization's team members.</p>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Avatar</th>
+          <th scope="col">Name</th>
+          <th scope="col">Role</th>
+          <th scope="col">Email</th>
+          <th scope="col">Invited</th>
+          <th scope="col">Accepted</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each model as |member|}}
+        <tr>
+          <th scope="row"><img src="{{member.user.photoURL}}" class="icon icon-md md-3"></th>
+          <td class="align-middle">{{ member.user.givenName }} {{ member.user.familyName }}</td>
+          <td class="align-middle">{{ member.role }}</td>
+          <td class="align-middle">{{ member.user.email }}</td>
+          <td class="align-middle" title="{{moment member.invited}}">
+            {{#if member.invited}}
+              {{moment-from-now member.invited }}
+            {{/if}}
+          </td>
+          <td class="align-middle" title="{{moment member.accepted}}">
+            {{#if member.accepted}}
+              {{moment-from-now member.accepted }}
+            {{else}}
+              <span class="text-info">Pending</span>
+            {{/if}}
+          </td>
+          <td class="align-middle">
+            {{#if (is-equal member.user.id user.model.id)}}
+            <button class="btn btn-sm btn-outline-danger btn-disabled disabled" title="You cannot remove yourself!">Remove</button>
+            {{else}}
+            <button class="btn btn-sm btn-outline-danger" {{action "delete" member}}>Remove</button>
+            {{/if}}
+          </td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+
+ </div>
+</div>
+
+{{organization-invite organization=organization}}

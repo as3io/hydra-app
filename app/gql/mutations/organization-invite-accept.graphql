@@ -1,0 +1,13 @@
+mutation OrganizationInviteAccept($input: AcceptOrganizationInviteInput!) {
+	organizationInviteAccept(input: $input) {
+    user {
+      id
+      photoURL
+      email
+      givenName
+      familyName
+    }
+    invited
+    accepted
+	}
+}

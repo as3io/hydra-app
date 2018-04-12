@@ -1,0 +1,10 @@
+query checkSession($input: SessionTokenInput!) {
+  checkSession(input: $input) {
+    session {
+      id
+      uid
+      exp
+      token
+		}
+  }
+}

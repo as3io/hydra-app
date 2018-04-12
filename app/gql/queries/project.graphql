@@ -1,0 +1,13 @@
+query Project($input: ModelIdInput!) {
+	project(input: $input) {
+		id
+		name
+    organization {
+      id
+      name
+      photoURL
+    }
+		updatedAt
+		createdAt
+	}
+}
