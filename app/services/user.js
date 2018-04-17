@@ -48,7 +48,7 @@ export default Service.extend({
       const userId = this.get('session.data.authenticated.id');
       if (isEmpty(userId)) return resolve();
 
-      return this.get('apollo').watchQuery({ query: currentUser }, 'currentUser')
+      return this.get('apollo').watchQuery({ query: currentUser, fetchPolicy: 'network-only' }, 'currentUser')
         .then(user => this.set('model', user))
         .then(() => resolve())
       ;

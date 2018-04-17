@@ -3,7 +3,6 @@ import { inject } from '@ember/service';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
 export default Route.extend(ApplicationRouteMixin, {
-  session: inject('session'),
 
   beforeModel() {
     return this._loadCurrentUser();
@@ -15,6 +14,17 @@ export default Route.extend(ApplicationRouteMixin, {
       this.get('error-processor').show(e);
       this.get('session').invalidate();
     });
+  },
+
+  /**
+   * Ref https://github.com/simplabs/ember-simple-auth/issues/802#issuecomment-166377794
+   */
+  sessionInvalidated() {
+    if (this.get('session.skipRedirectOnInvalidation')) {
+      this.set('session.skipRedirectOnInvalidation', false);
+    } else {
+      this._super(...arguments);
+    }
   },
 
   setupController(controller, model) {
