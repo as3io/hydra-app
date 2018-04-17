@@ -4,6 +4,7 @@ import { computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 
 import currentUser from 'hydra-app/gql/queries/current-user';
+import mutation from 'hydra-app/gql/mutations/magic-login';
 
 export default Service.extend({
   apollo: inject(),
@@ -32,6 +33,11 @@ export default Service.extend({
 
   hasPassword: computed.reads('model.hasPassword'),
 
+  initiateMagicLogin(email) {
+    const variables = { input: { email } };
+    return this.get('apollo').mutate({ mutation, variables })
+  },
+
   setOrg({ id }) {
     localStorage.setItem('selectedOrg', JSON.stringify({ id }));
     this.set('selectedOrg', { id });
@@ -42,7 +48,7 @@ export default Service.extend({
       const userId = this.get('session.data.authenticated.id');
       if (isEmpty(userId)) return resolve();
 
-      return this.get('apollo').watchQuery({ query: currentUser }, 'currentUser')
+      return this.get('apollo').watchQuery({ query: currentUser, fetchPolicy: 'network-only' }, 'currentUser')
         .then(user => this.set('model', user))
         .then(() => resolve())
       ;
