@@ -1,0 +1,5 @@
+mutation magicLogin($input: MagicLoginInput!) {
+  magicLogin(input: $input) {
+	email
+  }
+}

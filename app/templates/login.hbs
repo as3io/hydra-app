@@ -3,25 +3,41 @@
     <div class="offset-md-3 col-md-6">
       <div class="jumbotron">
         <small class="float-right text-muted">
-          {{#link-to 'signup'}}Need an account?{{/link-to}}<br>
-          {{#link-to 'reset'}}Forgot password?{{/link-to}}
+          {{#link-to "signup"}}Need an account?{{/link-to}}<br>
+          {{#link-to "reset"}}Forgot password?{{/link-to}}
         </small>
         <h3>Sign In</h3>
         <hr class="m-y-1">
-        <form {{action 'authenticate' on='submit'}}>
+        {{#if showPassword}}
+        <form {{action "authenticate" on="submit"}}>
           <div class="form-group">
             <label for="username">Email Address</label>
-            {{input id='username' class='form-control' type='email' value=username autofocus=true}}
+            {{input id="username" class="form-control" type="email" value=username required=true autofocus=true}}
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            {{input id='password' class='form-control' type='password' value=password}}
+            {{input id="password" class="form-control" type="password" required=true value=password}}
           </div>
-          {{#if errorMessage}}
-            <div class="alert-danger alert m-b-1" role="alert"><strong>Oh Snap!</strong><br> {{errorMessage}}</div>
-          {{/if}}
-          <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block">Sign in</button>
         </form>
+        {{else}}
+        <form {{action "magicLogin" on="submit"}}>
+          <div class="form-group">
+            <label for="username">Email Address</label>
+            {{input id="username" class="form-control" type="email" value=username required=true autofocus=true}}
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Sign in via Email</button>
+        </form>
+        {{/if}}
+        <p class="text-center text-muted">
+          {{#-bs/button "link" size="small" click=(action "togglePassword")}}
+            {{#if showPassword}}
+              Sign in with a magic link
+            {{else}}
+              Sign in with a password
+            {{/if}}
+          {{/-bs/button}}
+        </p>
       </div>
     </div>
   </div>
