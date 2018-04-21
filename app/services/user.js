@@ -14,6 +14,9 @@ export default Service.extend({
 
   selectedOrg: null,
 
+  isOwner: computed.equal('organization.role', 'Owner'),
+  isAdmin: computed.equal('organization.role', 'Administrator'),
+
   // Allow storing/retreiving org/proj id from ls?
   organizations: computed.reads('model.organizations'),
   organization: computed('model.organizations', 'selectedOrg', function() {
@@ -29,7 +32,18 @@ export default Service.extend({
     return this.get('model.organizations.firstObject');
   }),
   projects: computed.reads('organization.projects'),
-  project: computed.reads('projects.firstObject'),
+  project: computed('model.projects', 'selectedProject', function() {
+    try {
+      const { id } = JSON.parse(localStorage.getItem('selectedProject'));
+      if (id) {
+        const project = this.get('projects').findBy('id', id);
+        if (project) return project;
+      }
+    } catch (e) {
+      // noop
+    }
+    return this.get('model.projects.firstObject');
+  }),
 
   hasPassword: computed.reads('model.hasPassword'),
 
@@ -41,6 +55,11 @@ export default Service.extend({
   setOrg({ id }) {
     localStorage.setItem('selectedOrg', JSON.stringify({ id }));
     this.set('selectedOrg', { id });
+  },
+
+  setProject({ id }) {
+    localStorage.setItem('selectedProject', JSON.stringify({ id }));
+    this.set('selectedProject', { id });
   },
 
   load() {

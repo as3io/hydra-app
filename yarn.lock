@@ -2988,6 +2988,13 @@ ember-weakmap@^3.0.0:
     debug "^3.1.0"
     ember-cli-babel "^6.6.0"
 
+ember-wormhole@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/ember-wormhole/-/ember-wormhole-0.5.4.tgz#968e80f093494f4aed266e750afa63919c61383d"
+  dependencies:
+    ember-cli-babel "^6.10.0"
+    ember-cli-htmlbars "^2.0.1"
+
 emojis-list@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/emojis-list/-/emojis-list-2.1.0.tgz#4daa4d9db00f9819880c79fa457ae5b09a1fd389"

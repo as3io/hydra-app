@@ -1,0 +1,28 @@
+{{#if session.isAuthenticated}}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTenant" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {{#if user.organization}}
+        <img src="{{user.organization.photoURL}}" class="icon icon-sm mr-1">
+        {{user.organization.name}}
+      {{else}}
+        Select organization
+      {{/if}}
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownTenant">
+
+      {{#each user.organizations as |organization|}}
+        {{#link-to 'organization.index' organization.id class="dropdown-item" title="Switch to {{organization.name}}"}}
+          <img src="{{organization.photoURL}}" class="icon icon-sm mr-1"> {{organization.name}}
+        {{/link-to}}
+      {{/each}}
+
+      <div class="dropdown-divider"></div>
+      <div class="dropdown-item">
+        {{#link-to "organization.create" class="btn btn-block btn-sm btn-primary"}}
+          {{entypo-icon "plus"}}
+          Create Organization
+        {{/link-to}}
+      </div>
+    </div>
+  </li>
+{{/if}}

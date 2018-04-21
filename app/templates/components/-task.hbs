@@ -1,0 +1,12 @@
+<div class="d-flex w-100 justify-content-between">
+  <h5 class="mb-1">{{ title }}</h5>
+  {{#if completed}}
+  <small class="text-success">Complete!</small>
+  {{/if}}
+</div>
+<p>
+  {{#unless completed}}
+  {{#link-to route routeParam class='float-right btn btn-primary btn-sm'}}Do it!{{/link-to}}
+  {{/unless}}
+  {{ description }}
+</p>

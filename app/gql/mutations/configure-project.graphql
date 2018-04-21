@@ -1,0 +1,7 @@
+mutation ConfigureProject($input: ProjectConfigInput!) {
+	configureProject(input: $input) {
+		id
+		name
+    description
+	}
+}

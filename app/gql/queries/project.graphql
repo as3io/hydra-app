@@ -2,9 +2,11 @@ query Project($input: ModelIdInput!) {
 	project(input: $input) {
 		id
 		name
+		description
     organization {
       id
       name
+			description
       photoURL
     }
 		updatedAt
