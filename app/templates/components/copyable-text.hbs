@@ -1,0 +1,12 @@
+
+<input type="text" class="form-control form-control-sm" readonly=true value="{{value}}">
+{{#if (is-clipboard-supported)}}
+  {{#copy-button
+    class="input-group-append btn btn-secondary"
+    clipboardTarget=clipboardTarget
+    success=(action "success")
+    error=(action "error")
+  }}
+  {{entypo-icon "copy"}}
+  {{/copy-button}}
+{{/if}}

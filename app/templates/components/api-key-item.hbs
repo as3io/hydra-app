@@ -1,0 +1,31 @@
+
+  <div class="card">
+    <div class="card-body">
+      <button class="float-right btn btn-sm btn-secondary" title="Configure key" {{action "showModal"}}>
+        {{entypo-icon "cog"}}
+      </button>
+
+      {{#-bs/button status class="float-right mr-1" size="small" outline="true" disabled=true title=statusText}}
+        {{#if key.enabled}} {{entypo-icon "check"}} {{else}} {{entypo-icon "cross"}} {{/if}}
+      {{/-bs/button}}
+
+      <h5 class="text-left card-title">{{ key.purpose }}</h5>
+      <p class="text-left text-muted text-truncate">
+        {{#if key.description}} {{ key.description }} {{else}} Description {{/if}}
+      </p>
+      {{copyable-text value=key.value}}
+    </div>
+    <div class="card-footer">
+      <div class="row">
+      <small class="col" title="Last used {{if key.accessed (moment key.accessedAt) 'never'}} ({{ key.accessed }} total)">
+        {{entypo-icon "thunder-cloud"}} {{#if key.accessed }} {{ moment-format key.accessedAt "ll"}} {{else}} <span class="text-muted">Never</span>{{/if}}
+      </small>
+      <small class="col" title="Modified {{moment key.updatedAt}}">
+        {{entypo-icon "new-message"}} {{ moment-format key.updatedAt "ll"}}
+      </small>
+      <small class="col" title="Created {{moment key.createdAt}}">
+        {{entypo-icon "plus"}} {{ moment-format key.createdAt "ll"}}
+      </small>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,9 @@
+mutation UpdateProjectKey($input: KeyInput!) {
+	updateProjectKey(input: $input) {
+		id
+		value
+    purpose
+    description
+    enabled
+	}
+}

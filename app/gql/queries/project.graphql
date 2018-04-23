@@ -11,5 +11,16 @@ query Project($input: ModelIdInput!) {
     }
 		updatedAt
 		createdAt
+		keys {
+			id
+			value
+			purpose
+			description
+			enabled
+			createdAt
+			updatedAt
+			accessed
+			accessedAt
+		}
 	}
 }
