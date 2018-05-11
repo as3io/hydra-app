@@ -1,0 +1,9 @@
+mutation UpdateOrganizationKey($input: KeyInput!) {
+	updateOrganizationKey(input: $input) {
+		id
+		value
+    purpose
+    description
+    enabled
+	}
+}

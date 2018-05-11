@@ -1,0 +1,21 @@
+<div class="card-body">
+  <div class="row">
+    <div class="col-md-2 text-center">
+      <img src="{{organization.photoURL}}" class="icon icon-lg mr-4" alt="{{organization.name}}">
+    </div>
+    <div class="col">
+      {{#if canConfigure}}
+      <button class="float-right btn btn-sm btn-secondary" title="Configure organization" {{action "displayConfiguration"}}>
+        {{entypo-icon "cog"}}
+      </button>
+      {{-organization/config organization=organization isModalOpen=isConfigurationOpen}}
+      {{/if}}
+      <h2>
+        {{ organization.name }}
+        <small class="text-muted"><br>{{ project.name }}</small>
+      </h2>
+      <p class="card-text">{{ organization.description }}</p>
+      {{yield}}
+    </div>
+  </div>
+</div>

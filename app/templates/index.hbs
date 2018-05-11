@@ -1,139 +1,83 @@
 <div class="card mb-5">
   <div class="card-body">
-    <h5 class="card-title">Welcome, {{ user.model.givenName }}!</h5>
-    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque augue velit, malesuada vel pellentesque quis, dapibus ut libero. Morbi hendrerit imperdiet nisl, sed ullamcorper augue ornare at. Ut et hendrerit lorem. Proin nisi orci, sollicitudin sed ipsum id, pharetra vehicula augue. Praesent consequat velit id neque facilisis, ut posuere purus rutrum. Duis quis orci eu massa convallis placerat. Sed varius congue odio imperdiet volutpat. Nunc a dignissim elit. Donec sem ante, cursus id elementum suscipit, gravida quis leo. Curabitur malesuada, nulla sit amet bibendum aliquet, dolor sapien vestibulum libero, eget sagittis velit purus ac magna. Maecenas congue, arcu sed tempus eleifend, mi orci congue turpis, eget viverra orci risus id nibh. Suspendisse nec gravida leo.</p>
+    <h5 class="card-title">Hello, {{ user.model.givenName }}!</h5>
+    <p class="card-text">Welcome to the HYDRA Content Engine.</p>
     <p class="card-text">In vitae finibus elit. Integer eros magna, vehicula quis consectetur non, molestie malesuada lorem. Sed sit amet ex volutpat ex dictum interdum. In sit amet gravida erat, in facilisis velit. Donec quam ante, gravida eget nulla ac, dapibus efficitur dolor. Suspendisse lacinia accumsan mauris, vitae porttitor orci feugiat sit amet. Donec condimentum porttitor magna laoreet venenatis. Aenean tempor euismod vehicula.</p>
   </div>
 </div>
 
-<div class="card mb-5">
+{{#each user.organizations as |org|}}
+  {{#-organization/header organization=org size="medium"}}
+
+  <p class="card-text text-muted">Projects</p>
+  <ul class="nav justify-content-start">
+  {{#each org.projects as |project|}}
+    {{#link-to "project.index" project.id class="nav-item nav-link"}}
+      {{ project.name }}
+    {{/link-to}}
+  {{/each}}
+  </ul>
+
+  {{/-organization/header}}
+{{/each}}
+
+<div class="card mt-5">
   <div class="card-body">
     <h5 class="card-title">Getting Started</h5>
     <p class="card-text">Make the most of your content engine. Follow the steps below to get started in no time!</p>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">Secure your account</h5>
-          {{#if user.hasPassword}}
-          <small class="text-success">Complete!</small>
-          {{else}}
-          <small>Incomplete</small>
-          {{/if}}
-        </div>
-        <p>
-          {{#link-to 'settings' class='float-right btn btn-primary btn-sm'}}Do it!{{/link-to}}
-          Set a password for your account to ensure you can login from any device.
-        </p>
-      </li>
-      <li class="list-group-item">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">Create an organization</h5>
-          {{#if user.organization}}
-          <small class="text-success">Complete!</small>
-          {{else}}
-          <small>Incomplete</small>
-          {{/if}}
-        </div>
-        <p>
-          {{#link-to 'organization.create' class='float-right btn btn-primary btn-sm'}}Do it!{{/link-to}}
-          An organization houses your projects, provides access control for team members, and unifies billing and global settings.
-        </p>
-      </li>
-      <li class="list-group-item">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">Create a project</h5>
-          {{#if user.organization.projects}}
-          <small class="text-success">Complete!</small>
-          {{else}}
-          <small>Incomplete</small>
-          {{/if}}
-        </div>
-        <p>
-          {{#if user.organization}}
-            {{#link-to 'organization.projects.create' user.organization.id class='float-right btn btn-primary btn-sm'}}Do it!{{/link-to}}
-          {{else}}
-            <button class="float-right btn btn-primary btn-disabled disabled btn-sm" title="Create an organization first!">Do it!</button>
-          {{/if}}
-          A project is a container inside your organization that allows you to segment out both structure and content itself. A project provides read-level API keys to allow your appliations to retrieve your content.
-        </p>
-      </li>
-      <li class="list-group-item">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">Stop. Collaborate and listen.</h5>
-          {{#if user.organization.members}}
-          <small class="text-success">Complete!</small>
-          {{else}}
-          <small>Incomplete</small>
-          {{/if}}
-        </div>
-        <p>
-          {{#if user.organization}}
-            {{#link-to 'organization.team' user.organization.id class='float-right btn btn-primary btn-sm'}}Do it!{{/link-to}}
-          {{else}}
-            <button class="float-right btn btn-primary btn-disabled disabled btn-sm" title="Create an organization first!">Do it!</button>
-          {{/if}}
-          Collaboration with your team is key. Invite users to join your organization from your settings page.
-        </p>
-      </li>
-      <li class="list-group-item">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">Define your structure</h5>
-          {{#if user.project}}
-          <small class="text-success">Complete!</small>
-          {{else}}
-          <small>Incomplete</small>
-          {{/if}}
-        </div>
-        <p>
-          {{#if user.project}}
-            {{#link-to 'project.structure' user.project.id class='float-right btn btn-primary btn-sm'}}Do it!{{/link-to}}
-          {{else}}
-            <button class="float-right btn btn-primary btn-disabled disabled btn-sm" title="Create a project first!">Do it!</button>
-          {{/if}}
-          Phasellus tempus enim lorem, eu laoreet velit posuere nec. Cras turpis dolor, tempor eget elit non, scelerisque varius neque. Mauris ultrices tellus a vulputate condimentum. Duis mauris ex, tempus ac condimentum nec, tristique eget erat.
-        </p>
-      </li>
-      <li class="list-group-item">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">Create your content</h5>
-          {{#if user.project}}
-          <small class="text-success">Complete!</small>
-          {{else}}
-          <small>Incomplete</small>
-          {{/if}}
-        </div>
-        <p>
-          {{#if user.project}}
-            {{#link-to 'project.content' user.project.id class='float-right btn btn-primary btn-sm'}}Do it!{{/link-to}}
-          {{else}}
-            <button class="float-right btn btn-primary btn-disabled disabled btn-sm" title="Create a project first!">Do it!</button>
-          {{/if}}
-          Donec vestibulum ac purus at hendrerit. Mauris vel magna in mi maximus posuere non at nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-        </p>
-      </li>
-      <li class="list-group-item">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">Retrieve your content</h5>
-          {{#if user.organization.models}}
-          <small class="text-success">Complete!</small>
-          {{else}}
-          <small>Incomplete</small>
-          {{/if}}
-        </div>
-        <p>
-          {{#if user.project}}
-            {{#link-to 'project.settings' user.project.id class='float-right btn btn-primary btn-sm'}}Do it!{{/link-to}}
-          {{else}}
-            <button class="float-right btn btn-primary btn-disabled disabled btn-sm" title="Create an organization first!">Do it!</button>
-          {{/if}}
-          Duis vestibulum, massa ut euismod blandit, velit est mollis urna, eu auctor magna urna et dui. Vivamus dictum ac nisl eu auctor. Nam ac consectetur leo. Integer lorem risus, rutrum non consectetur ac, cursus non est.
-        </p>
-      </li>
+      {{-task
+        completed=(if user.hasPassword true)
+        route="settings"
+        title="Secure your account"
+        description="Set a password for your account to ensure you can login from any device."
+      }}
+      {{-task
+        completed=(if user.organization true)
+        route="organization.create"
+        title="Create an organization"
+        description="An organization houses your projects, provides access control for team members, and unifies billing and global settings."
+      }}
+      {{-task
+        completed=(if user.organization.projects true)
+        route='organization.projects.create'
+        routeParam=user.organization.id
+        title="Create a project"
+        description="A project is a container inside your organization that allows you to segment out both structure and content itself. A project provides read-level API keys to allow your appliations to retrieve your content."
+      }}
+      {{-task
+        completed=(if (gt user.organization.members.length 1) true)
+        route="organization.team"
+        routeParam=user.organization.id
+        title="Stop. Collaborate and listen."
+        description="Collaboration with your team is key. Invite users to join your organization from your settings page."
+      }}
+      {{-task
+        completed=(if user.project.hasStructure true)
+        route="project.structure"
+        routeParam=user.project.id
+        title="Define your structure"
+        description="Your content structure defines how your models interact. Modify your structure to interconnnect your data in new ways."
+      }}
+      {{-task
+        completed=(if user.project.hasContent true)
+        route="project.content"
+        routeParam=user.project.id
+        title="Create your content"
+        description=""
+      }}
+      {{-task
+        completed=(if user.project.hasKeys true)
+        route="project.settings"
+        routeParam=user.project.id
+        title="Retreive your content"
+        description=""
+      }}
     </ul>
   </div>
 </div>
 
-<div class="card">
+<div class="card mt-5">
   <div class="card-body">
     <h5 class="card-title">Help!</h5>
     <h6 class="card-subtitle mb-2 text-muted">Documentation and learning resources</h6>

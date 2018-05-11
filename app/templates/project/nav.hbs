@@ -1,9 +1,9 @@
 <span class="nav-item nav-link disabled">{{-ion "chevron-right"}}</span>
 
-{{#link-to "organization" model.organization.id class="nav-item nav-link" role="tab"}}Organization{{/link-to}}
+{{#link-to "organization" model.organization.id class="nav-item nav-link" role="tab"}}{{ model.organization.name }}{{/link-to}}
 <span class="nav-item nav-link disabled">{{-ion "chevron-right"}}</span>
 
-{{#link-to "project" model.id class="nav-item nav-link" role="tab"}}Project{{/link-to}}
+{{#link-to "project" model.id class="nav-item nav-link" role="tab"}}{{ model.name }}{{/link-to}}
 <span class="nav-item nav-link disabled">{{-ion "chevron-right"}}</span>
 
 {{#link-to "project.structure" model.id class="nav-item nav-link" role="tab"}}Structure{{/link-to}}

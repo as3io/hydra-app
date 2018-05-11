@@ -6,19 +6,8 @@
       </a>
 
     <div class="dropdown-menu dropdown-menu-right">
-      {{#link-to "settings" class="dropdown-item flex"}}
-        <span>Settings</span>
-        <span class="ml-auto tenant-action">
-          {{-ion "settings"}}
-        </span>
-      {{/link-to}}
-      <div class="dropdown-divider"></div>
-      {{#link-to "logout" class="dropdown-item flex"}}
-        <span>Sign Out</span>
-        <span class="ml-auto tenant-action">
-          {{-ion "log-out"}}
-        </span>
-      {{/link-to}}
+      {{#link-to "settings" class="dropdown-item"}} Settings {{/link-to}}
+      {{#link-to "logout" class="dropdown-item"}} Sign Out {{/link-to}}
     </div>
   </li>
 {{else}}

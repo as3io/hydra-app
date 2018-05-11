@@ -2,8 +2,13 @@ query Organization($input: ModelIdInput!) {
 	organization(input: $input) {
 		id
 		name
+		description
     photoURL
 		updatedAt
 		createdAt
+		projects {
+			id
+			name
+		}
 	}
 }

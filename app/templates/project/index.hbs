@@ -1,76 +1,29 @@
 <div class="card mb-5">
   <div class="card-body">
-    <div class="row justify-content-center">
-      <div class="col">
-        <h2>
-          {{ model.name }}<br>
-        </h2>
-      </div>
-    </div>
-  </div>
-</div>
-
-<hr>
-
-<div class="card mb-5">
-  <div class="card-body">
     <h5 class="card-title">Project checklist</h5>
     <p class="card-text">Make the most of your project. Follow the steps below to get started in no time!</p>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">Define your structure</h5>
-          {{#if project.structure}}
-          <small class="text-success">Complete!</small>
-          {{else}}
-          <small>Incomplete</small>
-          {{/if}}
-        </div>
-        <p>
-          {{#if project.id}}
-            {{#link-to 'project.structure' project.id class='float-right btn btn-primary btn-sm'}}Do it!{{/link-to}}
-          {{else}}
-            <button class="float-right btn btn-primary btn-disabled disabled btn-sm" title="Create a project first!">Do it!</button>
-          {{/if}}
-          Phasellus tempus enim lorem, eu laoreet velit posuere nec. Cras turpis dolor, tempor eget elit non, scelerisque varius neque. Mauris ultrices tellus a vulputate condimentum. Duis mauris ex, tempus ac condimentum nec, tristique eget erat.
-        </p>
-      </li>
-      <li class="list-group-item">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">Create your content</h5>
-          {{#if project.content}}
-          <small class="text-success">Complete!</small>
-          {{else}}
-          <small>Incomplete</small>
-          {{/if}}
-        </div>
-        <p>
-          {{#if project.id}}
-            {{#link-to 'project.content' project.id class='float-right btn btn-primary btn-sm'}}Do it!{{/link-to}}
-          {{else}}
-            <button class="float-right btn btn-primary btn-disabled disabled btn-sm" title="Create a project first!">Do it!</button>
-          {{/if}}
-          Donec vestibulum ac purus at hendrerit. Mauris vel magna in mi maximus posuere non at nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-        </p>
-      </li>
-      <li class="list-group-item">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">Retrieve your content</h5>
-          {{#if project.settings}}
-          <small class="text-success">Complete!</small>
-          {{else}}
-          <small>Incomplete</small>
-          {{/if}}
-        </div>
-        <p>
-          {{#if project.id}}
-            {{#link-to 'project.settings' project.id class='float-right btn btn-primary btn-sm'}}Do it!{{/link-to}}
-          {{else}}
-            <button class="float-right btn btn-primary btn-disabled disabled btn-sm" title="Create an organization first!">Do it!</button>
-          {{/if}}
-          Duis vestibulum, massa ut euismod blandit, velit est mollis urna, eu auctor magna urna et dui. Vivamus dictum ac nisl eu auctor. Nam ac consectetur leo. Integer lorem risus, rutrum non consectetur ac, cursus non est.
-        </p>
-      </li>
+      {{-task
+        completed=(if model.hasStructure true)
+        route="project.structure"
+        routeParam=model.id
+        title="Define your structure"
+        description="Your content structure defines how your models interact. Modify your structure to interconnnect your data in new ways."
+      }}
+      {{-task
+        completed=(if model.hasContent true)
+        route="project.content"
+        routeParam=model.id
+        title="Create your content"
+        description=""
+      }}
+      {{-task
+        completed=(if model.hasKeys true)
+        route="project.settings"
+        routeParam=model.id
+        title="Retreive your content"
+        description=""
+      }}
     </ul>
   </div>
 </div>
