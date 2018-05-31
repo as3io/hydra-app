@@ -11,15 +11,24 @@ export default Service.extend({
   session: inject(),
 
   model: null,
-
   selectedOrg: null,
+  selectedProject: null,
 
-  isOwner: computed.equal('organization.role', 'Owner'),
-  isAdmin: computed.equal('organization.role', 'Administrator'),
+  isOwner: computed('model.memberships', 'organization', function() {
+    const membership = this.get('model.memberships').findBy('organization.id', this.get('organization.id'));
+    return membership.role === 'Owner';
+  }),
+  isAdmin: computed('model.memberships', 'organization', function() {
+    const membership = this.get('model.memberships').findBy('organization.id', this.get('organization.id'));
+    return membership.role === 'Admin';
+  }),
 
   // Allow storing/retreiving org/proj id from ls?
-  organizations: computed.reads('model.organizations'),
-  organization: computed('model.organizations', 'selectedOrg', function() {
+  organizations: computed('model.memberships', function() {
+    console.warn(this.get('model.memberships'));
+    return this.get('model.memberships').map(membership => membership.organization);
+  }),
+  organization: computed('organizations', 'selectedOrg', function() {
     try {
       const { id } = JSON.parse(localStorage.getItem('selectedOrg'));
       if (id) {
@@ -29,10 +38,10 @@ export default Service.extend({
     } catch (e) {
       // noop
     }
-    return this.get('model.organizations.firstObject');
+    return this.get('organizations.firstObject');
   }),
   projects: computed.reads('organization.projects'),
-  project: computed('model.projects', 'selectedProject', function() {
+  project: computed('organization.projects', 'selectedProject', function() {
     try {
       const { id } = JSON.parse(localStorage.getItem('selectedProject'));
       if (id) {
@@ -42,7 +51,7 @@ export default Service.extend({
     } catch (e) {
       // noop
     }
-    return this.get('model.projects.firstObject');
+    return this.get('projects.firstObject');
   }),
 
   hasPassword: computed.reads('model.hasPassword'),

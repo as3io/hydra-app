@@ -6,16 +6,21 @@ query currentUser {
     givenName
     photoURL
     hasPassword
-    organizations {
-      id
-      name
-      photoURL
-      projects {
+    memberships {
+      role,
+      acceptedAt,
+      organization {
         id
         name
+        photoURL
       }
-      accepted
-      role
+      projectRoles {
+        project {
+          id
+          name
+        }
+        role
+      }
     }
   }
 }
