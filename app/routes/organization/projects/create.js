@@ -16,8 +16,8 @@ export default Route.extend(RouteQueryManager, AuthenticatedRouteMixin, {
 
   actions: {
     create() {
-      const { name, organization } = this.modelFor('organization.projects.create');
-      const variables = { input: { payload: { name, organization } } };
+      const { name } = this.modelFor('organization.projects.create');
+      const variables = { input: { name } };
       const resultKey = 'createProject';
       const refetchQueries = ['AllProjects'];
       return this.get('apollo').mutate({ mutation, variables, refetchQueries }, resultKey)
