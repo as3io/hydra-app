@@ -25,8 +25,8 @@ export default Service.extend({
 
   // Allow storing/retreiving org/proj id from ls?
   organizations: computed('model.memberships', function() {
-    console.warn(this.get('model.memberships'));
-    return this.get('model.memberships').map(membership => membership.organization);
+    const memberships = this.get('model.memberships') || [];
+    return memberships.map(membership => membership.organization);
   }),
   organization: computed('organizations', 'selectedOrg', function() {
     try {

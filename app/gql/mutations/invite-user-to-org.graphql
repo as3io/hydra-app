@@ -1,0 +1,13 @@
+mutation InviteUserToOrg($input: OrganizationInviteInput!) {
+	inviteUserToOrg(input: $input) {
+    user {
+      id
+      photoURL
+      email
+      givenName
+      familyName
+    }
+    invitedAt
+    acceptedAt
+	}
+}

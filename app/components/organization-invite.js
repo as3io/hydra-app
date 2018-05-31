@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
 import { inject } from '@ember/service';
 
-import mutation from 'hydra-app/gql/mutations/organization-invite';
+import mutation from 'hydra-app/gql/mutations/invite-user-to-org';
 
 export default Component.extend(ComponentQueryManager, {
   flashMessages: inject(),
@@ -37,13 +37,11 @@ export default Component.extend(ComponentQueryManager, {
       const { email, givenName, familyName, role, projects } = this.get('model');
       const projectRoles = projects.map(project => {
         if (project.role) {
-          return { id: project.id, role: project.role }
+          return { projectId: project.id, role: project.role }
         }
       });
-      const organization = this.get('organization.id');
-
-      const variables = { input: { organization, payload: { email, givenName, familyName, role, projectRoles } } };
-      const resultKey = 'organization';
+      const variables = { input: { email, givenName, familyName, role, projectRoles } };
+      const resultKey = 'inviteUserToOrg';
       const refetchQueries = ['OrganizationMembers'];
       return this.get('apollo').mutate({ mutation, variables, refetchQueries }, resultKey)
         .then(() => this.get('flashMessages').info('Invitation sent!'))

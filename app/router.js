@@ -18,7 +18,6 @@ Router.map(function() {
       this.route('create');
     });
     this.route('team');
-    this.route('settings');
   });
 
   this.route('project', { path: '/project/:id' }, function() {

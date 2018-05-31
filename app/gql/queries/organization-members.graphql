@@ -2,8 +2,8 @@ query OrganizationMembers($input: ModelIdInput!) {
 	organization(input: $input) {
 		id
     members {
-      invited
-      accepted
+      invitedAt
+      acceptedAt
       user {
         id
         email
@@ -12,8 +12,9 @@ query OrganizationMembers($input: ModelIdInput!) {
         photoURL
       }
       role
-      projects {
+      projectRoles {
         project {
+          id
           name
         }
         role

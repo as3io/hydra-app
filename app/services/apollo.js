@@ -8,6 +8,7 @@ export default ApolloService.extend({
    * The current user sesion.
    */
   session: inject(),
+  user: inject(),
 
   /**
    * Registers a link to authorize requests before fetch requests are made.
@@ -33,7 +34,15 @@ export default ApolloService.extend({
     return new Promise(success => {
       const token = this.get('session.data.authenticated.token');
       const Authorization = `Bearer ${token}`;
-      success({ headers: { Authorization } });
+      const headers = { Authorization };
+
+      const organizationId = this.get('user.organization.id');
+      if (organizationId) headers['X-Organization'] = organizationId;
+
+      const projectId = this.get('user.project.id');
+      if (projectId) headers['X-Project'] = projectId;
+
+      success({ headers });
     });
   },
 });
