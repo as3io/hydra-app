@@ -26,6 +26,9 @@ Router.map(function() {
   this.route('signup');
   this.route('reset');
   this.route('token', { path: '/token/:token/:dest' });
+  this.route('actions', function() {
+    this.route('magic-login', { path: 'magic-login/:token' });
+  })
   this.route('organization.accept');
 });
 

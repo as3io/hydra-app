@@ -56,7 +56,7 @@ export default Service.extend({
   hasPassword: computed.reads('model.hasPassword'),
 
   initiateMagicLogin(email) {
-    const variables = { input: { email } };
+    const variables = { email };
     return this.get('apollo').mutate({ mutation, variables })
   },
 

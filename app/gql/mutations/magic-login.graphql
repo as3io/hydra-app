@@ -1,5 +1,3 @@
-mutation magicLogin($input: MagicLoginInput!) {
-  magicLogin(input: $input) {
-	email
-  }
+mutation SendMagicLoginEmail($email: String!) {
+  sendMagicLoginEmail(email: $email)
 }
