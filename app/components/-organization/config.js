@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { inject } from '@ember/service';
 import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
 
-import mutation from 'hydra-app/gql/mutations/configure-organization';
+import mutation from 'hydra-app/gql/mutations/update-organization';
 
 export default Component.extend(ComponentQueryManager, {
   flashMessages: inject(),
@@ -24,18 +24,13 @@ export default Component.extend(ComponentQueryManager, {
 
   actions: {
     saveConfiguration() {
-      // this.showLoading();
-      const organizationId = this.get('organization.id');
+      const id = this.get('organization.id');
       const { photoURL, name, description } = this.getProperties([ 'photoURL', 'name', 'description' ]);
-      const input = { organizationId, photoURL, name, description };
+      const input = { id, payload: { photoURL, name, description } };
       const variables = { input };
-      return this.get('apollo').mutate({ mutation, variables }, 'configure-organization')
-        .then(() => {
-          this.set('isModalOpen', false);
-          this.get('flashMessages').success('Organization updated successfully.');
-        })
+      return this.get('apollo').mutate({ mutation, variables }, 'update-organization')
+        .then(() => this.get('flashMessages').success('Organization updated successfully.'))
         .catch(e => this.get('errorProcessor').show(e))
-        // .finally(() => this.hideLoading())
       ;
     },
   },

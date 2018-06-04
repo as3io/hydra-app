@@ -1,0 +1,8 @@
+mutation UpdateOrganization($input: UpdateOrganizationInput!) {
+	updateOrganization(input: $input) {
+		id
+		name
+    photoURL
+    description
+	}
+}
