@@ -15,9 +15,9 @@
     <div class="form-group col-md-4">
       <label for="key">Generate</label>
       <div class="input-group">
-      {{#-bs/button class="danger btn-block" click=(action "generateApiKey")}}
+      <button class="danger btn btn-danger btn-block" {{action "generateApiKey"}}>
         Generate a new API key
-      {{/-bs/button}}
+      </button>
       </div>
     </div>
   </div>
