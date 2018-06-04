@@ -1,0 +1,5 @@
+fragment ProjectListFragment on Project {
+  id
+  name
+  updatedAt
+}

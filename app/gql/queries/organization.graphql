@@ -1,3 +1,5 @@
+#import 'hydra-app/gql/fragments/organization/project'
+
 query Organization($input: ModelIdInput!) {
 	organization(input: $input) {
 		id
@@ -6,9 +8,9 @@ query Organization($input: ModelIdInput!) {
     photoURL
 		updatedAt
 		createdAt
+
 		projects {
-			id
-			name
+			...ProjectListFragment
 		}
 	}
 }
