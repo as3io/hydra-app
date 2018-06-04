@@ -1,9 +1,0 @@
-mutation CreateOrganizationKey($input: KeyInput!) {
-	createOrganizationKey(input: $input) {
-		id
-		value
-    purpose
-    description
-    enabled
-	}
-}

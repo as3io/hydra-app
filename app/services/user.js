@@ -23,7 +23,6 @@ export default Service.extend({
     return membership.role === 'Admin';
   }),
 
-  // Allow storing/retreiving org/proj id from ls?
   organizations: computed('model.memberships', function() {
     const memberships = this.get('model.memberships') || [];
     return memberships.map(membership => membership.organization);
@@ -84,10 +83,6 @@ export default Service.extend({
   },
 
   logout() {
-    // const loader = this.get('loader');
-    // loader.show();
-    return this.get('session').invalidate()
-      // .finally(loader.hide())
-    ;
+    return this.get('session').invalidate();
   }
 });
