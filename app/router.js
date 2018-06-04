@@ -15,10 +15,8 @@ Router.map(function() {
   });
 
   this.route('project', { path: '/project/:id' }, function() {
-    this.route('team');
     this.route('structure');
     this.route('content');
-    this.route('settings');
   });
 
   this.route('login');
