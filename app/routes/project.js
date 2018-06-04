@@ -6,8 +6,7 @@ import query from 'hydra-app/gql/queries/project';
 
 export default Route.extend(RouteQueryManager, AuthenticatedRouteMixin, {
 
-  beforeModel({ params }) {
-    const id = params.project.id;
+  afterModel({ id }) {
     this.get('user').setProject({ id });
     this._super(...arguments);
   },
