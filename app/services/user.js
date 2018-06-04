@@ -38,10 +38,10 @@ export default Service.extend({
     } catch (e) {
       // noop
     }
-    return this.get('organizations.firstObject');
+    return this.get('organizations.firstObject.organization');
   }),
   projects: computed.reads('organization.projects'),
-  project: computed('organization.projects', 'selectedProject', function() {
+  project: computed('organization.projects.[]', 'selectedProject', function() {
     try {
       const { id } = JSON.parse(localStorage.getItem('selectedProject'));
       if (id) {

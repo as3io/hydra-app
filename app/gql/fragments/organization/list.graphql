@@ -1,0 +1,8 @@
+fragment OrganizationListFragment on Organization {
+		id
+		name
+    description
+    photoURL
+		updatedAt
+		createdAt
+}

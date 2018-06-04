@@ -1,3 +1,6 @@
+#import 'hydra-app/gql/fragments/organization/list'
+#import 'hydra-app/gql/fragments/organization/project'
+
 query currentUser {
   currentUser {
     id
@@ -10,14 +13,14 @@ query currentUser {
       role,
       acceptedAt,
       organization {
-        id
-        name
-        photoURL
+        ...OrganizationListFragment
+        projects {
+          ...ProjectListFragment
+        }
       }
       projectRoles {
         project {
-          id
-          name
+          ...ProjectListFragment
         }
         role
       }
