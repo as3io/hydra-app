@@ -1,5 +1,5 @@
 #import 'hydra-app/gql/fragments/organization/list'
-#import 'hydra-app/gql/fragments/organization/project'
+#import 'hydra-app/gql/fragments/project/list'
 
 query currentUser {
   currentUser {
