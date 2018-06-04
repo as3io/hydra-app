@@ -29,6 +29,7 @@ export default Component.extend(ComponentQueryManager, {
       const input = { id, payload: { photoURL, name, description } };
       const variables = { input };
       return this.get('apollo').mutate({ mutation, variables }, 'update-organization')
+        .then(() => this.set('isModalOpen', false))
         .then(() => this.get('flashMessages').success('Organization updated successfully.'))
         .catch(e => this.get('errorProcessor').show(e))
       ;
