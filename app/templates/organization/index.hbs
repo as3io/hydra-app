@@ -10,7 +10,7 @@
         </div>
         {{/link-to}}
       {{/each}}
-      {{#link-to "organization.projects.create" model.id class="card btn btn-primary text-center"}}
+      {{#link-to "organization.create-project" model.id class="card btn btn-primary text-center"}}
         <div class="card-body">
           <h5 class="card-title mb-0">{{entypo-icon "plus"}} New Project</h5>
         </div>
@@ -26,13 +26,13 @@
     <ul class="list-group list-group-flush">
       {{-task
         completed=(if model.projects.length true)
-        route='organization.projects.create'
+        route='organization.create-project'
         routeParam=model.id
         title="Create a project"
         description="A project is a container inside your organization that allows you to segment out both structure and content itself. A project provides read-level API keys to allow your appliations to retrieve your content."
       }}
       {{-task
-        completed=(if (gt model.members.length 1) true)
+        completed=(if (gt user.model.members.length 1) true)
         route="organization.team"
         routeParam=model.id
         title="Stop. Collaborate and listen."

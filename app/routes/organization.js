@@ -21,7 +21,7 @@ export default Route.extend(RouteQueryManager, AuthenticatedRouteMixin, {
   model({ id }) {
     const variables = { input: { id } };
     const resultKey = 'organization';
-    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, resultKey)
+    return this.get('apollo').watchQuery({ query, variables }, resultKey)
       .catch(e => this.get('errorProcessor').show(e))
     ;
   },

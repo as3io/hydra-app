@@ -14,9 +14,7 @@ Router.map(function() {
 
   this.route('organization.create');
   this.route('organization', { path: '/org/:id' }, function() {
-    this.route('projects', function() {
-      this.route('create');
-    });
+    this.route('create-project');
     this.route('team');
   });
 

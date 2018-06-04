@@ -16,7 +16,7 @@ export default Route.extend(RouteQueryManager, AuthenticatedRouteMixin, {
 
   actions: {
     create() {
-      const { name } = this.modelFor('organization.projects.create');
+      const { name } = this.modelFor('organization.create-project');
       const variables = { input: { name } };
       const resultKey = 'createProject';
       const refetchQueries = ['AllProjects'];
