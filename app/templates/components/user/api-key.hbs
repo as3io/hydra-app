@@ -1,0 +1,24 @@
+<form {{action "generateKey" on="submit"}} autocomplete="nope">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="key">API Key</label>
+      <div class="input-group">
+        {{copyable-text value=key}}
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="key">API Secret</label>
+      <div class="input-group">
+        {{copyable-text value=secret}}
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="key">Generate</label>
+      <div class="input-group">
+      {{#-bs/button class="danger btn-block" click=(action "generateApiKey")}}
+        Generate a new API key
+      {{/-bs/button}}
+      </div>
+    </div>
+  </div>
+</form>

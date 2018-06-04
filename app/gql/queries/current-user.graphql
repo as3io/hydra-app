@@ -2,10 +2,15 @@
 #import 'hydra-app/gql/fragments/project/list'
 #import 'hydra-app/gql/fragments/user/list'
 
-query currentUser {
+query CurrentUser {
   currentUser {
     ...UserListFragment
     hasPassword
+    api {
+      id
+      key
+      secret
+    }
     memberships {
       role,
       acceptedAt,
