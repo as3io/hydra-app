@@ -1,8 +1,8 @@
 import Route from '@ember/routing/route';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+import LoadingMixin from 'hydra-app/mixins/loading-mixin';
 
-export default Route.extend(ApplicationRouteMixin, {
-
+export default Route.extend(LoadingMixin, ApplicationRouteMixin, {
   beforeModel() {
     return this._loadCurrentUser();
   },
@@ -33,5 +33,48 @@ export default Route.extend(ApplicationRouteMixin, {
 
   _loadCurrentUser() {
     return this.user.load();
+  },
+
+
+  /**
+   *
+   */
+  actions: {
+    showLoading() {
+      this.showLoading();
+    },
+
+    hideLoading() {
+      this.hideLoading();
+    },
+
+    /**
+     *
+     * @param {string} name The route name to transition to.
+     */
+    transitionTo(name) {
+      return this.transitionTo(name);
+    },
+
+    /**
+     *
+     * @param {*} transition
+     */
+    loading(transition) {
+      this.showLoading();
+      transition.finally(() => this.hideLoading());
+    },
+
+    /**
+     *
+     * @param {Error} e
+     */
+    error(e) {
+      if (this.get('errorProcessor').isReady()) {
+        this.get('errorProcessor').show(e);
+      } else {
+        this.intermediateTransitionTo('application_error', e);
+      }
+    },
   },
 });
