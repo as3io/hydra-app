@@ -1,13 +1,10 @@
 #import 'hydra-app/gql/fragments/organization/list'
 #import 'hydra-app/gql/fragments/project/list'
+#import 'hydra-app/gql/fragments/user/list'
 
 query currentUser {
   currentUser {
-    id
-    email
-    familyName
-    givenName
-    photoURL
+    ...UserListFragment
     hasPassword
     memberships {
       role,
