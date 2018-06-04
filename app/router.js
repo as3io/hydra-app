@@ -7,10 +7,6 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('project', { path: '/:id' }, function() {
-    this.route('models');
-    this.route('settings');
-  });
 
   this.route('organization.create');
   this.route('organization', { path: '/org/:id' }, function() {

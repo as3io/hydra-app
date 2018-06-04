@@ -32,7 +32,7 @@
         description="A project is a container inside your organization that allows you to segment out both structure and content itself. A project provides read-level API keys to allow your appliations to retrieve your content."
       }}
       {{-task
-        completed=(if (gt user.model.members.length 1) true)
+        completed=(if (gt user.model.memberships.length 1) true)
         route="organization.team"
         routeParam=model.id
         title="Stop. Collaborate and listen."
