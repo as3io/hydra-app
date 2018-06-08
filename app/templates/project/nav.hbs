@@ -1,14 +1,12 @@
-<span class="nav-item nav-link disabled">{{-ion "chevron-right"}}</span>
+<span class="nav-item nav-link disabled">{{entypo-icon "chevron-right"}}</span>
 
 {{#link-to "organization" model.organization.id class="nav-item nav-link" role="tab"}}{{ model.organization.name }}{{/link-to}}
-<span class="nav-item nav-link disabled">{{-ion "chevron-right"}}</span>
+<span class="nav-item nav-link disabled">{{entypo-icon "chevron-right"}}</span>
 
 {{#link-to "project" model.id class="nav-item nav-link" role="tab"}}{{ model.name }}{{/link-to}}
-<span class="nav-item nav-link disabled">{{-ion "chevron-right"}}</span>
+<span class="nav-item nav-link disabled">{{entypo-icon "chevron-right"}}</span>
 
 {{#link-to "project.structure" model.id class="nav-item nav-link" role="tab"}}Structure{{/link-to}}
 {{#link-to "project.content" model.id class="nav-item nav-link" role="tab"}}Content{{/link-to}}
-{{#link-to "project.team" model.id class="nav-item nav-link" role="tab"}}Team Members{{/link-to}}
-{{#link-to "project.settings" model.id class="nav-item nav-link" role="tab"}}Settings{{/link-to}}
 
 {{outlet}}

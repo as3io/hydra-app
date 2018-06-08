@@ -1,8 +1,0 @@
-mutation ConfigureOrganization($input: OrganizationConfigInput!) {
-	configureOrganization(input: $input) {
-		id
-		name
-    photoURL
-    description
-	}
-}

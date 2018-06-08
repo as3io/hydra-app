@@ -16,6 +16,12 @@ export default Service.extend({
     return new Error('Some error happen.');
   },
 
+  isReady() {
+    const element = $('.flash-messages');
+    if (element.length) return true;
+    return false;
+  },
+
   show(e) {
     const error = this.handle(e);
     this.get('flashMessages').danger(error.message, { sticky: true });

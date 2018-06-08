@@ -7,25 +7,16 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('project', { path: '/:id' }, function() {
-    this.route('models');
-    this.route('settings');
-  });
 
   this.route('organization.create');
   this.route('organization', { path: '/org/:id' }, function() {
-    this.route('projects', function() {
-      this.route('create');
-    });
+    this.route('create-project');
     this.route('team');
-    this.route('settings');
   });
 
   this.route('project', { path: '/project/:id' }, function() {
-    this.route('team');
     this.route('structure');
     this.route('content');
-    this.route('settings');
   });
 
   this.route('login');
@@ -35,6 +26,9 @@ Router.map(function() {
   this.route('signup');
   this.route('reset');
   this.route('token', { path: '/token/:token/:dest' });
+  this.route('actions', function() {
+    this.route('magic-login', { path: 'magic-login/:token' });
+  })
   this.route('organization.accept');
 });
 

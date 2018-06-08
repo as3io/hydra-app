@@ -1,27 +1,24 @@
+#import 'hydra-app/gql/fragments/project/list'
+#import 'hydra-app/gql/fragments/user/list'
 query OrganizationMembers($input: ModelIdInput!) {
 	organization(input: $input) {
 		id
     members {
-      invited
-      accepted
+      invitedAt
+      acceptedAt
       user {
-        id
-        email
-        givenName
-        familyName
-        photoURL
+        ...UserListFragment
       }
       role
-      projects {
+      projectRoles {
         project {
-          name
+    			...ProjectListFragment
         }
         role
       }
     }
     projects {
-      id
-      name
+      ...ProjectListFragment
     }
 	}
 }

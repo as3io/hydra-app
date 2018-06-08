@@ -1,21 +1,31 @@
-query currentUser {
+#import 'hydra-app/gql/fragments/organization/list'
+#import 'hydra-app/gql/fragments/project/list'
+#import 'hydra-app/gql/fragments/user/list'
+
+query CurrentUser {
   currentUser {
-    id
-    email
-    familyName
-    givenName
-    photoURL
+    ...UserListFragment
     hasPassword
-    organizations {
+    api {
       id
-      name
-      photoURL
-      projects {
-        id
-        name
+      key
+      secret
+    }
+    memberships {
+      role,
+      acceptedAt,
+      organization {
+        ...OrganizationListFragment
+        projects {
+          ...ProjectListFragment
+        }
       }
-      accepted
-      role
+      projectRoles {
+        project {
+          ...ProjectListFragment
+        }
+        role
+      }
     }
   }
 }

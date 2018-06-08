@@ -31,7 +31,19 @@ export default Component.extend({
   },
 
   willDestroyElement() {
-    this.$().modal('dispose');
+    const $obj = this.$();
+    if (this.get('isShown')) {
+      // The modal was closed by sending `show=false` and it's still open.
+      // Remove internal events and then natively hide the modal and disposed once hidden.
+      $obj.off('hidden.bs.modal')
+      $obj.on('hidden.bs.modal', () => {
+        this.sendEvent('onHidden');
+        $obj.modal('dispose');
+      });
+      $obj.modal('hide');
+    } else {
+      $obj.modal('dispose');
+    }
   },
 
   actions: {
@@ -67,10 +79,21 @@ export default Component.extend({
     });
   },
 
+  resetShowing() {
+    this.set('isShowing', false);
+    this.set('isShown', false);
+  },
+
+  resetHiding() {
+    this.set('isHiding', false);
+    this.set('isHidden', false);
+  },
+
   setModalHooks($obj) {
     // This event fires immediately when the show instance method is called.
     // If caused by a click, the clicked element is available as the relatedTarget property of the event.
     $obj.on('show.bs.modal', () => {
+      this.resetHiding();
       this.set('isTransitioning', true);
       this.set('isShowing', true);
       this.set('isShown', false);
@@ -89,6 +112,7 @@ export default Component.extend({
 
     // This event is fired immediately when the hide instance method has been called.
     $obj.on('hide.bs.modal', () => {
+      this.resetShowing();
       this.set('isTransitioning', true);
       this.set('isHiding', true);
       this.set('isHidden', false);
@@ -107,7 +131,7 @@ export default Component.extend({
 
   sendEvent(name) {
     const fn = this.get(name);
-    if (fn && typeof fn === 'function') return fn();
+    if (fn && typeof fn === 'function') return fn(this);
   },
 
 });

@@ -1,9 +1,0 @@
-mutation CreateProjectKey($input: KeyInput!) {
-	createProjectKey(input: $input) {
-		id
-		value
-    purpose
-    description
-    enabled
-	}
-}

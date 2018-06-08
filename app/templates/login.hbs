@@ -30,13 +30,13 @@
         </form>
         {{/if}}
         <p class="text-center text-muted">
-          {{#-bs/button "link" size="small" click=(action "togglePassword")}}
+          <button class="btn btn-link button btn-sm" {{action "togglePassword"}}>
             {{#if showPassword}}
               Sign in with a magic link
             {{else}}
               Sign in with a password
             {{/if}}
-          {{/-bs/button}}
+          </button>
         </p>
       </div>
     </div>

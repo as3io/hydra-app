@@ -5,9 +5,21 @@
   </div>
 </div>
 
+
+<div class="card mb-5">
+  <div class="card-body">
+    <h5 class="card-title">API Key</h5>
+    {{user/api-key
+      key=user.model.api.key
+      secret=user.model.api.secret
+      onChange=(route-action "generateKey")
+    }}
+  </div>
+</div>
+
 <div class="card mb-5">
   <div class="card-body">
     <h5 class="card-title">Password</h5>
-    {{change-password onChange=(route-action "setPassword")}}
+    {{user/change-password onChange=(route-action "setPassword")}}
   </div>
 </div>

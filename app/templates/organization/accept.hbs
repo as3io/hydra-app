@@ -17,8 +17,8 @@
   <div class="card-body">
     <h5 class="card-title">Organization Invitation</h5>
     <p class="card-text">You have been invited to join {{ model.name }}. To accept the invitation, click the button below!</p>
-    {{#-bs/button "primary" click=(route-action "accept")}}
+    <button class="btn btn-primary" {{route-action "accept"}}>
       Accept invitation
-    {{/-bs/button}}
+    </button>
   </div>
 </div>

@@ -46,7 +46,7 @@
         description="A project is a container inside your organization that allows you to segment out both structure and content itself. A project provides read-level API keys to allow your appliations to retrieve your content."
       }}
       {{-task
-        completed=(if (gt user.organization.members.length 1) true)
+        completed=(if (gt user.model.memberships.length 1) true)
         route="organization.team"
         routeParam=user.organization.id
         title="Stop. Collaborate and listen."
@@ -63,15 +63,14 @@
         completed=(if user.project.hasContent true)
         route="project.content"
         routeParam=user.project.id
-        title="Create your content"
-        description=""
+        title="Put the word out!"
+        description="Create your content after defining your project's structure"
       }}
       {{-task
-        completed=(if user.project.hasKeys true)
-        route="project.settings"
-        routeParam=user.project.id
-        title="Retreive your content"
-        description=""
+        completed=(if user.hasKey true)
+        route="settings"
+        title="Retrieve your content"
+        description="Create an API key to retrieve your content from other applications."
       }}
     </ul>
   </div>
